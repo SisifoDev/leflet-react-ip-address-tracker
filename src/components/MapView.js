@@ -1,6 +1,7 @@
 import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import IconLocation from "./IconPosition";
 
 import "../index.css";
 
@@ -12,7 +13,7 @@ const MapView = ({ lng, lat, data1, data2 }) => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={position}>
+      <Marker position={position} icon={IconLocation}>
         <Popup>
           {data1} <br /> {data2}
         </Popup>
