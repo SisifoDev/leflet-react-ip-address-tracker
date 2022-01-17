@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Map from "./components/Map";
 
 import axios from "axios";
 
 import imgUrl from "./img/pattern-bg.png";
+import MapView from "./components/MapView";
 
 function App() {
-  const [ip, setIp] = useState("186.84.22.45");
+  // const [ip, setIp] = useState("186.84.22.45");
+  const ip = "";
   const [ipData, setIpData] = useState({});
 
   useEffect(() => {
@@ -20,12 +21,6 @@ function App() {
     };
     consultaAPI();
   }, [ip]);
-  // let loading = "";
-  // if (isObjEmpty(ipData)) {
-  //   return (loading = <h1>Loading...</h1>);
-  // } else {
-  //   return (loading = <h1>Data cargada</h1>);
-  // }
 
   function isObjEmpty(obj) {
     for (var prop in obj) {
@@ -45,19 +40,21 @@ function App() {
           </SearchWrapper>
         </Search>
 
-        {
-          /* <Map /> */
-          isObjEmpty(ipData) ? (
-            <h3>No data</h3>
-          ) : (
-            <Map
-              lng={`${ipData.location.lng}`}
-              lat={`${ipData.location.lat}`}
-              data1={`${ipData.ip}`}
-              data2={`${ipData.location.city}, ${ipData.location.region}, ${ipData.location.country}`}
-            />
-          )
-        }
+        <div id="map">
+          {
+            /* <Map /> */
+            isObjEmpty(ipData) ? (
+              <h3>Chargin...</h3>
+            ) : (
+              <MapView
+                lng={`${ipData.location.lng}`}
+                lat={`${ipData.location.lat}`}
+                data1={`${ipData.ip}`}
+                data2={`${ipData.location.city}, ${ipData.location.region}, ${ipData.location.country}`}
+              />
+            )
+          }
+        </div>
       </Main>
 
       <div className="attribution">
@@ -110,7 +107,7 @@ const SearchWrapper = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 15px;
   margin-top: 29px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 
@@ -118,10 +115,4 @@ const SearchWrapper = styled.div`
     width: 100%;
     height: 100%;
   }
-`;
-
-const MapWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  position: absolute;
 `;

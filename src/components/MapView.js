@@ -1,17 +1,13 @@
+import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import styled from "styled-components";
+import "leaflet/dist/leaflet.css";
 
-// import { Icon } from "leaflet";
-// import "leaflet/dist/leaflet.css";
-// import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
-// import "leaflet-defaulticon-compatibility";
-// import imgUrl from "../components/img/icon-location.png";
 import "../index.css";
 
-const Map = ({ lng, lat, data1, data2 }) => {
+const MapView = ({ lng, lat, data1, data2 }) => {
   const position = [lat, lng];
   return (
-    <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+    <MapContainer center={position} zoom={18} scrollWheelZoom={false}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -25,4 +21,4 @@ const Map = ({ lng, lat, data1, data2 }) => {
   );
 };
 
-export default Map;
+export default MapView;
