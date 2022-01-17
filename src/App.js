@@ -5,16 +5,18 @@ import axios from "axios";
 
 import imgUrl from "./img/pattern-bg.png";
 import MapView from "./components/MapView";
+import Button from "./components/Button";
+import Arrow from "./components/Arrow";
 
 function App() {
-  // const [ip, setIp] = useState("186.84.22.45");
-  const ip = "";
+  const [ip, setIp] = useState("");
   const [ipData, setIpData] = useState({});
+  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     const consultaAPI = async () => {
       const consulta = await axios(
-        `https://geo.ipify.org/api/v2/country,city?apiKey=at_4VNcckW5Q78xcqCefuOL0Y3vn20m8&ipAddress=${ip}`
+        `https://geo.ipify.org/api/v2/country,city?apiKey=at_nESUW1ewhrZmgjNOxSERVgc28c0NE&ipAddress=${ip}`
       );
       setIpData(consulta.data);
       console.log(consulta.data);
@@ -30,14 +32,32 @@ function App() {
     return true;
   }
 
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIp(inputValue);
+  };
+
   return (
     <>
       <Main>
         <Search>
           <Title>IP Address Tracker</Title>
-          <SearchWrapper>
-            <input type="text" placeholder="Enter IP Address" />
-          </SearchWrapper>
+
+          <Form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              value={inputValue}
+              onChange={handleInputChange}
+              placeholder="Search for any IP address or domain"
+            />
+            <Button onClick={handleSubmit}>
+              <Arrow />
+            </Button>
+          </Form>
         </Search>
 
         <div id="map">
@@ -83,10 +103,10 @@ const Main = styled.main`
 
 const Search = styled.section`
   height: 300px;
-  width: 100%;
+  width: 100vw;
   display: flex;
   flex-direction: column;
-
+  padding: 0 24px;
   justify-content: center;
   align-items: center;
   background-image: url(${imgUrl});
@@ -101,7 +121,8 @@ const Title = styled.h1`
 `;
 
 const SearchWrapper = styled.div`
-  width: 327px;
+  width: 100%;
+
   height: 58px;
   display: flex;
   justify-content: center;
@@ -114,5 +135,43 @@ const SearchWrapper = styled.div`
   input {
     width: 100%;
     height: 100%;
+    border: none;
+    border-radius: 15px 0 0 15px;
+    margin-left: 24px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    outline: none;
+    color: #2c2c2c;
   }
+`;
+
+const Form = styled.form`
+width: 100%;
+
+height: 58px;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: #fff;
+border-radius: 15px;
+margin-top: 29px;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 15px 0 0 15px;
+    margin-left: 24px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    outline: none;
+    color: #2c2c2c;
+
 `;
