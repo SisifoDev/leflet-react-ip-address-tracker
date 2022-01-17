@@ -19,7 +19,6 @@ function App() {
         `https://geo.ipify.org/api/v2/country,city?apiKey=at_nESUW1ewhrZmgjNOxSERVgc28c0NE&ipAddress=${ip}`
       );
       setIpData(consulta.data);
-      console.log(consulta.data);
     };
     consultaAPI();
   }, [ip]);
@@ -120,7 +119,7 @@ const Title = styled.h1`
   font-size: 26px;
 `;
 
-const SearchWrapper = styled.div`
+const Form = styled.form`
   width: 100%;
 
   height: 58px;
@@ -146,32 +145,4 @@ const SearchWrapper = styled.div`
     outline: none;
     color: #2c2c2c;
   }
-`;
-
-const Form = styled.form`
-width: 100%;
-
-height: 58px;
-display: flex;
-justify-content: center;
-align-items: center;
-background-color: #fff;
-border-radius: 15px;
-margin-top: 29px;
-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-
-input {
-    width: 100%;
-    height: 100%;
-    border: none;
-    border-radius: 15px 0 0 15px;
-    margin-left: 24px;
-    font-family: Rubik;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 21px;
-    outline: none;
-    color: #2c2c2c;
-
 `;
