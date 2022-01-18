@@ -247,7 +247,7 @@ const Details = styled.div`
     flex-direction: row;
     gap: 65px;
     padding: 32px 37px;
-    bottom: -65px;
+    bottom: -55px;
   }
 `;
 
