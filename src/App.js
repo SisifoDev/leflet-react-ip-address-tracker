@@ -9,9 +9,21 @@ import Button from "./components/Button";
 import Arrow from "./components/Arrow";
 
 function App() {
-  const [ip, setIp] = useState("");
-  const [ipData, setIpData] = useState({});
   const [inputValue, setInputValue] = useState("");
+  const [ip, setIp] = useState("");
+  const [ipData, setIpData] = useState({
+    ip: "8.8.8.8",
+    location: {
+      country: "US",
+      region: "California",
+      city: "Mountain View",
+      lat: 37.38605,
+      lng: -122.08385,
+
+      timezone: "-08:00",
+    },
+    isp: "Google LLC",
+  });
 
   useEffect(() => {
     const consultaAPI = async () => {
@@ -19,6 +31,21 @@ function App() {
         `https://geo.ipify.org/api/v2/country,city?apiKey=at_nESUW1ewhrZmgjNOxSERVgc28c0NE&ipAddress=${ip}`
       );
       setIpData(consulta.data);
+      setIpData({
+        ip: consulta.data.ip,
+        location: {
+          country: consulta.data.location.country,
+          region: consulta.data.location.region,
+          city: consulta.data.location.city,
+          lat: consulta.data.location.lat,
+          lng: consulta.data.location.lng,
+
+          timezone: consulta.data.location.timezone,
+        },
+        domains: consulta.data.domains,
+        as: consulta.data.as,
+        isp: consulta.data.isp,
+      });
     };
     consultaAPI();
   }, [ip]);
