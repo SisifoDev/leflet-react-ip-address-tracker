@@ -226,7 +226,6 @@ const Details = styled.div`
     font-weight: 500;
     font-size: 20px;
     line-height: 24px;
-    /* identical to box height, or 120% */
 
     text-align: center;
     letter-spacing: -0.178571px;
@@ -250,8 +249,20 @@ const ContentDetails = styled.div`
   gap: 7px;
   justify-content: center;
   align-items: center;
+
   @media (min-width: 1400px) {
     align-items: flex-start;
     gap: 13px;
+
+    &:not(:first-child)::after {
+      content: "";
+      width: 1px;
+      height: 75px;
+      position: absolute;
+      margin-left: -35px;
+      margin-top: 10px;
+      background-color: #979797;
+      opacity: 25%;
+    }
   }
 `;
