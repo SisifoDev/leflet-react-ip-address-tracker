@@ -19,6 +19,7 @@ function App() {
         `https://geo.ipify.org/api/v2/country,city?apiKey=at_nESUW1ewhrZmgjNOxSERVgc28c0NE&ipAddress=${ip}`
       );
       setIpData(consulta.data);
+
       console.log(consulta.data);
     };
     consultaAPI();
@@ -224,6 +225,12 @@ const Details = styled.div`
     letter-spacing: 1.45833px;
     text-transform: uppercase;
     opacity: 50%;
+
+    @media (min-width: 1400) {
+      font-size: 12px;
+      line-height: 14px;
+      letter-spacing: 1.75px;
+    }
   }
 
   & p {
