@@ -148,8 +148,15 @@ const Search = styled.section`
 
 const Title = styled.h1`
   color: #fff;
+  font-weight: 500;
   font-size: 26px;
   margin-top: 180px;
+
+  @media (min-width: 1400px) {
+    font-size: 32px;
+    line-height: 30px;
+    margin-top: 33px;
+  }
 `;
 
 const FormWrapper = styled.div`
@@ -240,6 +247,7 @@ const Details = styled.div`
     flex-direction: row;
     gap: 65px;
     padding: 32px 37px;
+    bottom: -65px;
   }
 `;
 
